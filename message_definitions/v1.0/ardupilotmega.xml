@@ -1162,6 +1162,18 @@
       <entry value="2" name="OSD_PARAM_INVALID_PARAMETER_INDEX"/>
       <entry value="3" name="OSD_PARAM_INVALID_PARAMETER"/>
     </enum>
+    <enum name="MAV_CMD">
+      <entry value="31090" name="MAV_CMD_SO_SYSMODE" hasLocation="false" isDestination="false">
+        <description>Set Soleon system mode.</description>
+        <param index="1" label="Mode" minValue="0" maxValue="4" increment="1">Mode</param>
+        <param index="2" label="Custom Mode">Custom mode - this is system specific, please refer to the individual autopilot specifications for details.</param>
+        <param index="3" label="Custom Submode">Custom sub mode - this is system specific, please refer to the individual autopilot specifications for details.</param>
+        <param index="4">Empty</param>
+        <param index="5">Empty</param>
+        <param index="6">Empty</param>
+        <param index="7">Empty</param>
+      </entry>
+    </enum>
   </enums>
   <messages>
     <message id="150" name="SENSOR_OFFSETS">
@@ -1873,5 +1885,19 @@
       <field type="uint16_t[4]" name="rpm" units="rpm">RPM (eRPM).</field>
       <field type="uint16_t[4]" name="count">count of telemetry packets received (wraps at 65535).</field>
     </message>
+<!--  </messages> -->
+  <!-- Soleon -->
+<!--    <messages> -->
+  	<message id="50080" name="SO_STATUS">
+      <description>The pressure readings for the typical setup of one absolute and differential pressure sensor. The units are as specified in each field.</description>
+      <field type="uint32_t" name="time_boot_ms" units="ms">Timestamp (time since system boot).</field>
+      <field type="float" name="soleon_value" units="hPa">Absolute pressure</field>
+      <field type="float" name="press_diff" units="hPa">Differential pressure 1</field>
+      <field type="int16_t" name="temperature" units="cdegC">Absolute pressure temperature</field>
+      <extensions/>
+      <field type="int16_t" name="temperature_press_diff" units="cdegC">Differential pressure temperature (0, if not available). Report values of 0 (or 1) as 1 cdegC.</field>
+    </message>
   </messages>
+
+
 </mavlink>
