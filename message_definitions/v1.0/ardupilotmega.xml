@@ -1159,6 +1159,18 @@
       <entry value="2" name="OSD_PARAM_INVALID_PARAMETER_INDEX"/>
       <entry value="3" name="OSD_PARAM_INVALID_PARAMETER"/>
     </enum>
+    <enum name="MAV_CMD">
+      <entry value="31090" name="MAV_CMD_SO_SYSMODE" hasLocation="false" isDestination="false">
+        <description>Set Soleon system mode.</description>
+        <param index="1" label="Mode" minValue="0" maxValue="4" increment="1">Mode</param>
+        <param index="2" label="Custom Mode">Custom mode - this is system specific, please refer to the individual autopilot specifications for details.</param>
+        <param index="3" label="Custom Submode">Custom sub mode - this is system specific, please refer to the individual autopilot specifications for details.</param>
+        <param index="4">Empty</param>
+        <param index="5">Empty</param>
+        <param index="6">Empty</param>
+        <param index="7">Empty</param>
+      </entry>
+    </enum>
   </enums>
   <messages>
     <message id="150" name="SENSOR_OFFSETS">
@@ -1870,5 +1882,21 @@
       <field type="uint16_t[4]" name="rpm" units="rpm">RPM (eRPM).</field>
       <field type="uint16_t[4]" name="count">count of telemetry packets received (wraps at 65535).</field>
     </message>
+<!--  </messages> -->
+  <!-- Soleon -->
+<!--    <messages> -->
+  	<message id="50080" name="SO_STATUS">
+      <description>Sprayer status custom message</description>
+      <field type="uint32_t" name="timestamp" units="ms">Timestamp.</field>
+      <field type="uint8_t" name="status" units="bitfield">Status byte,b0:Spray right, b1:Spray left,b2:ready,b3:pump erro,b4:nozzles error</field>
+      <field type="float" name="filllevel" units="l">Fill level liter</field>
+      <field type="float" name="flowliter" units="l/min">Flow rate liter/min</field>
+      <field type="float" name="flowha" units="l/ha">Flow rate liter/ha.</field>
+      <field type="float" name="distlines" units="m">Distance between lines.</field>
+      <field type="float" name="speed" units="m/s">Speed of the mission.</field>
+    </message>
+    
   </messages>
+
+
 </mavlink>
